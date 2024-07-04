@@ -20,7 +20,7 @@ adminRouter.post(`${registerAdmin}`,RegisterUser);
 adminRouter.post(`${addUserInOrganizationAdmin}`,addUserInOrganizationA);
 adminRouter.get(`${adminGetAllPaymentStatusFromUser}`,adminGetAllPaymentStatusFromU);
 adminRouter.post(`${adminGetOrderFromUser}`,adminGetAllPaymentStatusFromU);
-adminRouter.put(`${adminUpdateOrderStatusUser}`,adminUpdateOrderStatusU);
+adminRouter.put(`${adminUpdateOrderStatusUser}/:id`,adminUpdateOrderStatusU);
 adminRouter.get(`${allDayFoodListAdmin}/:id`,allDayFoodListA);
 adminRouter.post(`${createDayFoodListAdmin}`,CreateDayFoodList);
 adminRouter.delete(`${deleteDayFoodListAdmin}/:id`,deleteDayFoodList);
