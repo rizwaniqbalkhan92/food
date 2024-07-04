@@ -8,11 +8,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_validator_1 = require("express-validator");
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const Admin_1 = __importDefault(require("../../model/Admin/Admin"));
 const LoginUserAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const errors = (0, express_validator_1.validationResult)(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).send({ "errors": errors.array() });
+    }
+    const { email, password } = req.body;
     try {
+        let userAdmin = yield Admin_1.default.findOne({ email });
+        if (!userAdmin) {
+            return res.status(400).send({ "message": "Invalid Credentials" });
+        }
+        const isMatch = yield bcryptjs_1.default.compare(password, userAdmin.password);
+        if (!isMatch) {
+            return res.status(400).send({ "message": "Invalid Credentials" });
+        }
+        const payload = {
+            user: {
+                userId: userAdmin.id
+            }
+        };
+        jsonwebtoken_1.default.sign(payload, '123456789', { expiresIn: 360000 }, (err, token) => {
+            if (err) {
+                throw err;
+            }
+            res.status(200).send({ token });
+        });
     }
     catch (error) {
+        console.log("ERROR", error);
+        res.status(500).send({ message: "Internal Server Error", error });
     }
 });
 exports.default = LoginUserAdmin;

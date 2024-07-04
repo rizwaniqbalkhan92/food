@@ -9,10 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const orderFood = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-    }
-    catch (error) {
-    }
+const orderFood = (req, response) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.default = orderFood;

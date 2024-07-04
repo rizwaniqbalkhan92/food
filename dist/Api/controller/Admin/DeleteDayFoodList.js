@@ -8,11 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const FoodlistSchema_1 = __importDefault(require("../../model/Admin/FoodlistSchema"));
 const deleteDayFoodList = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id: _id } = req.params;
     try {
+        const response = yield FoodlistSchema_1.default.findByIdAndDelete({ _id });
+        res.status(201).send({ "message": "Record Deleted Successfully", res: response });
     }
     catch (error) {
+        res.status(500).send({ "message": "Internal Server Error", error });
     }
 });
 exports.default = deleteDayFoodList;

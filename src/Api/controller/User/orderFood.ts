@@ -1,12 +1,8 @@
 import { Request,Response } from "express"
+import FoodList from "../../model/Admin/FoodlistSchema";
 
-const orderFood=async(req:Request,res:Response)=>{
-try{
+const orderFood=async(req:Request,response:Response)=>{
 
-}
-catch(error){
-
-}
 }
 
 

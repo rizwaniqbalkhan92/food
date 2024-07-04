@@ -27,7 +27,7 @@ const RegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     if (!errors.isEmpty()) {
         return res.status(400).send({ "errors": errors.array() });
     }
-    const { username, password, email, image } = req.body;
+    const { username, password, userRole, email, image } = req.body;
     try {
         let userAdmin = yield Admin_1.default.findOne({ email });
         if (userAdmin) {
@@ -37,7 +37,8 @@ const RegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             username,
             email,
             image,
-            password
+            password,
+            userRole
         });
         const salt = yield bcryptjs_1.default.genSalt(10);
         userAdmin.password = yield bcryptjs_1.default.hash(password, salt);
@@ -55,7 +56,8 @@ const RegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
     catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
+        console.log("ERROR", error);
+        res.status(500).send({ message: "Internal Server Error", error });
     }
 });
 exports.default = RegisterUser;

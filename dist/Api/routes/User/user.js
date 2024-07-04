@@ -10,10 +10,12 @@ const addLocalPaymentMethod_1 = __importDefault(require("../../controller/User/a
 const getFoodStatus_1 = __importDefault(require("../../controller/User/getFoodStatus"));
 const addCardDetails_1 = __importDefault(require("../../controller/User/addCardDetails"));
 const orderFood_1 = __importDefault(require("../../controller/User/orderFood"));
+const GetFoodList_1 = __importDefault(require("../../controller/User/GetFoodList"));
 const userRouter = express_1.default.Router();
 userRouter.post(`${Constant_1.loginUser}`, Login_1.default);
 userRouter.post(`${Constant_1.addLocalPaymentMethod}`, addLocalPaymentMethod_1.default);
 userRouter.post(`${Constant_1.getFoodStatus}`, getFoodStatus_1.default);
 userRouter.post(`${Constant_1.addCardDeatils}`, addCardDetails_1.default);
 userRouter.post(`${Constant_1.orderFood}`, orderFood_1.default);
+userRouter.get(`${Constant_1.allDayFoodListAdmin}/:id`, GetFoodList_1.default);
 exports.default = userRouter;

@@ -17,18 +17,18 @@ import updateDayFoodList from '../../controller/Admin/UpddateDayFoodList';
 const adminRouter=express.Router();
 
 adminRouter.post(`${registerAdmin}`,RegisterUser);
-adminRouter.get(`${addUserInOrganizationAdmin}`,addUserInOrganizationA);
+adminRouter.post(`${addUserInOrganizationAdmin}`,addUserInOrganizationA);
 adminRouter.get(`${adminGetAllPaymentStatusFromUser}`,adminGetAllPaymentStatusFromU);
 adminRouter.post(`${adminGetOrderFromUser}`,adminGetAllPaymentStatusFromU);
 adminRouter.put(`${adminUpdateOrderStatusUser}`,adminUpdateOrderStatusU);
-adminRouter.get(`${allDayFoodListAdmin}`,allDayFoodListA);
+adminRouter.get(`${allDayFoodListAdmin}/:id`,allDayFoodListA);
 adminRouter.post(`${createDayFoodListAdmin}`,CreateDayFoodList);
-adminRouter.delete(`${deleteDayFoodListAdmin}`,deleteDayFoodList);
+adminRouter.delete(`${deleteDayFoodListAdmin}/:id`,deleteDayFoodList);
 adminRouter.post(`${forgetPasswordAdmin}`,forgetPasswordUserAdmin);
 adminRouter.post(`${forgetUserNameAdmin}`,forgetPasswordUserNameA);
 adminRouter.post(`${loginAdmin}`,LoginUserAdmin);
 adminRouter.post(`${logoutAdmin}`,LogoutAdmin);
-adminRouter.post(`${updateDayFoodListAdmin}`,updateDayFoodList);
+adminRouter.put(`${updateDayFoodListAdmin}/:id`,updateDayFoodList);
 
 
 
